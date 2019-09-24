@@ -1,2 +1,4 @@
-# python_morsels
- My solutions to Python morsels 
+# Python Morsels
+
+My solutions to Python morsels 
+
