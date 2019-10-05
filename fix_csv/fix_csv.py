@@ -1,6 +1,5 @@
 import argparse
 import csv
-import sys
 
 # Parser
 parser = argparse.ArgumentParser(description = 'Normalize CSV files')
