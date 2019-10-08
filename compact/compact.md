@@ -1,0 +1,38 @@
+Write a function that accepts a sequence (a list for example) and returns a new iterable (anything you can loop over) with adjacent duplicate values removed.
+
+For example:
+
+```bash
+>>> compact([1, 1, 1])
+[1]
+>>> compact([1, 1, 2, 2, 3, 2])
+[1, 2, 3, 2]
+>>> compact([])
+[]
+```
+There are two bonuses for this exercise.
+
+I recommend solving the exercise without the bonuses first and then attempting each bonus separately.
+
+### Bonus 1
+
+For the first bonus, make sure you accept any iterable as an argument, not just a sequence (which means you can't use index look-ups in your answer). ✔️
+
+Here's an example with a generator expression, which is a lazy iterable:
+
+```bash
+>>> compact(n**2 for n in [1, 2, 2])
+[1, 4]
+```
+
+### Bonus 2
+
+As a second bonus, make sure you return an iterator from your compact function instead of a list. ✔️
+
+```bash
+>>> c = compact(n**2 for n in [1, 2, 2])
+>>> iter(c) is c
+True
+```
+
+This should allow your compact function to accept infinitely long iterables (or other lazy iterables).
