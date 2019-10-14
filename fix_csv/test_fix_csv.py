@@ -7,6 +7,10 @@ from textwrap import dedent
 from tempfile import NamedTemporaryFile
 import unittest
 
+# path fix for windows
+path = os.path.dirname(os.path.abspath(__file__))
+fname = 'fix_csv.py'
+local = os.path.join(path, fname)
 
 class FixCSVTests(unittest.TestCase):
 
@@ -30,7 +34,8 @@ class FixCSVTests(unittest.TestCase):
             1995,Mercedes-Benz,C-Class
         """).lstrip()
         with make_file(old_contents) as old, make_file("") as new:
-            output = run_program('fix_csv.py', args=[old, new])
+            # test 1
+            output = run_program(local, args=[old, new])
             with open(new) as new_file:
                 new_contents = new_file.read()
         self.assertEqual(expected, new_contents)
@@ -56,7 +61,7 @@ class FixCSVTests(unittest.TestCase):
             24,Bob Dylan,House Of The Risin' Sun
         """).lstrip()
         with make_file(old_contents) as old, make_file("") as new:
-            output = run_program('fix_csv.py', args=[old, new])
+            output = run_program(local, args=[old, new])
             with open(new) as new_file:
                 new_contents = new_file.read()
         self.assertEqual(expected, new_contents)
@@ -68,7 +73,7 @@ class FixCSVTests(unittest.TestCase):
             2009|GMC|Yukon XL 1500
         """).lstrip()
         with make_file(old_contents) as old, make_file("") as new:
-            run_program('fix_csv.py', args=[old, new])
+            run_program(local, args=[old, new])
             with open(old) as old_file:
                 contents = old_file.read()
         self.assertEqual(old_contents, contents)
@@ -76,7 +81,7 @@ class FixCSVTests(unittest.TestCase):
     def test_call_with_too_many_files(self):
         with make_file("") as old, make_file("") as new:
             with self.assertRaises(BaseException):
-                run_program('fix_csv.py', args=[old, new, old])
+                run_program(local, args=[old, new, old])
 
     # To test the Bonus part of this exercise, comment out the following line
     #@unittest.expectedFailure
@@ -98,11 +103,11 @@ class FixCSVTests(unittest.TestCase):
         ''').lstrip()
         with make_file(old_contents) as old, make_file("") as new:
             args = [old, new, '--in-delimiter= ']
-            run_program('fix_csv.py', args=args)
+            run_program(local, args=args)
             with open(new) as new_file:
                 self.assertEqual(expected1, new_file.read())
             args = ['--in-delimiter= ', "--in-quote='", old, new]
-            run_program('fix_csv.py', args=args)
+            run_program(local, args=args)
             with open(new) as new_file:
                 self.assertEqual(expected2, new_file.read())
 
@@ -120,7 +125,7 @@ class FixCSVTests(unittest.TestCase):
             1995,Mercedes-Benz,C-Class
         """).lstrip()
         with make_file(contents1) as old, make_file("") as new:
-            run_program('fix_csv.py', args=[old, new])
+            run_program(local, args=[old, new])
             with open(new) as new_file:
                 self.assertEqual(expected1, new_file.read())
         contents2 = dedent("""
@@ -142,7 +147,7 @@ class FixCSVTests(unittest.TestCase):
             24,Bob Dylan,House Of The Risin' Sun,5:20
         """).lstrip()
         with make_file(contents2) as old, make_file("") as new:
-            run_program('fix_csv.py', args=[old, new])
+            run_program(local, args=[old, new])
             with open(new) as new_file:
                 self.assertEqual(expected2, new_file.read())
 
