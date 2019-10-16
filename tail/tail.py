@@ -13,3 +13,11 @@ def tail(sequence, number):
     d.extend(sequence)
     
     return list(d)
+
+# Python morsels solution
+
+def tail1(iterable, n):
+    """Return the last n items of given iterable."""
+    if n <= 0:
+        return []
+    return list(deque(iterable, maxlen=n))
