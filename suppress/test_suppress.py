@@ -77,7 +77,6 @@ class SuppressTests(unittest.TestCase):
             my_dict = {'key': 'value'}
             my_dict[4]
         self.assertEqual(type(suppressed.exception), KeyError)
-        #self.assertEqual(suppressed.exception, KeyError)
         self.assertEqual(type(suppressed.traceback), TracebackType)
 
     # To test the Bonus part of this exercise, comment out the following line
