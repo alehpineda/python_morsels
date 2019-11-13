@@ -1,7 +1,7 @@
 from contextlib import ContextDecorator
+from contextlib import contextmanager
 
-
-class suppress(ContextDecorator):
+class suppress1(ContextDecorator):
     def __init__(self, *exception_types):
         self.exception_types = exception_types
     
@@ -15,3 +15,18 @@ class suppress(ContextDecorator):
         self.traceback = traceback
         return isinstance(exception, self.exception_types)
 
+
+# Solution using contexmanager
+
+class ExceptionInfo(object):
+    exception = None
+    traceback = None
+
+@contextmanager
+def suppress(*exception_types):
+    info = ExceptionInfo()
+    try:
+        yield info
+    except exception_types as error:
+        info.exception = error
+        info.traceback = error.__traceback__
