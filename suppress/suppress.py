@@ -2,29 +2,16 @@ from contextlib import ContextDecorator
 
 
 class suppress(ContextDecorator):
-    def __init__(self, *suppress_exception):
-        self.suppress_exception = suppress_exception
-        self._exception = None
-        self._traceback = None
+    def __init__(self, *exception_types):
+        self.exception_types = exception_types
     
 
     def __enter__(self):
         return self
 
 
-    def __exit__(self, exception, value, traceback):
-        if exception and issubclass(exception, self.suppress_exception):
-            self._exception = exception()
-            self._traceback = traceback
-            return True
-        return False
+    def __exit__(self, exception_type, exception, traceback):
+        self.exception = exception
+        self.traceback = traceback
+        return isinstance(exception, self.exception_types)
 
-
-    @property
-    def exception(self):
-        return self._exception
-
-
-    @property
-    def traceback(self):
-        return self._traceback
