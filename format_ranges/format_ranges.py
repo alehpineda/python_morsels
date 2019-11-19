@@ -29,8 +29,17 @@ def format_ranges(list_numbers):
 
 def _unique_ranges(list_numbers):
     count = Counter(list_numbers)
+    #sets = []
     #print(list(set(count.elements())), len(set(count.elements())))
     while len(set(count.elements())) > 0:
         #print(list(set(count.elements())))
         yield list(set(count.elements()))
+        #sets.append(list(set(count.elements()) ) )
         count.subtract(set(count.elements()))
+    
+    #return order_sets(sets)
+
+def order_sets(set):
+    # order the set by the minimun value of the set and
+    # the minimum len
+    pass
