@@ -15,10 +15,10 @@ def format_ranges(list_numbers):
             
             else:
                 num_groups.append((group[0],))
-    
-    num_groups.sort()
 
-    return ','.join([f'{r[0]}-{r[-1]}' if len(r) > 1 else f'{r[0]}' for r in num_groups])
+    range_groups = (f'{r[0]}-{r[-1]}' if len(r) > 1 else f'{r[0]}' for r in sorted(num_groups))
+
+    return ','.join(range_groups)
 
 def _unique_ranges(list_numbers):
     count = Counter(list_numbers)
