@@ -1,44 +1,40 @@
-from collections import OrderedDict
 from collections.abc import MutableSet
 
-class OrderedSet(object):
-    def __init__(self, lista):
-        self.lista = OrderedDict.fromkeys(lista)
-        #self.lista = MutableSet(lista)
+class OrderedSet(MutableSet):
+    def __init__(self, items):
+        self.items = dict.fromkeys(items, None)
     
     
     def __iter__(self):
-        for element in self.lista:
-            yield element
+        for item in self.items:
+            yield item
     
 
     def __len__(self):
-        return len(self.lista)
+        return len(self.items)
 
     
-    def __contains__(self, key):
-        return key in self.lista
+    def __contains__(self, item):
+        return item in self.items
 
 
     # Bonus 1 - add and discard
-    def add(self, palabra):
-        self.lista.__setitem__(palabra, palabra)
+    def add(self, item):
+        self.items[item] = None
 
 
-    def discard(self, palabra):
-        try:
-            del self.lista[palabra]
-        except KeyError:
-            pass
+    def discard(self, item):
+        self.items.pop(item, None)
 
 
     # Bonus 2 - Equality
     def __eq__(self, other):
         if not isinstance(other, OrderedSet):
-            return self.lista.keys()==other
+            return self.items.keys()==other
         
-        return list(self.lista.keys())==list(other.lista.keys())
+        return tuple(self.items.keys())==tuple(other.items.keys())
+
 
     # Bonus 3 - Supports index
     def __getitem__(self, i):
-        return list(self.lista.items())[i][0]
+        return list(self.items.items())[i][0]
