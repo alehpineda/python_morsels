@@ -33,6 +33,7 @@ config.read(args.inifile)
 
 
 # Write csvfile
+# newline='' needed for windows
 with open(args.csvfile, 'w', newline='') as csvfile:
 
     # if optional argument exist
