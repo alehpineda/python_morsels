@@ -33,7 +33,7 @@ config.read(args.inifile)
 
 
 # Write csvfile
-with open(args.csvfile, 'w') as csvfile:
+with open(args.csvfile, 'w', newline='') as csvfile:
 
     # if optional argument exist
     if args.collapsed:

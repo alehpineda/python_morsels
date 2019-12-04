@@ -11,6 +11,7 @@ import unittest
 path = os.path.dirname(os.path.abspath(__file__))
 fname = 'ini2csv.py'
 local = os.path.join(path, fname)
+# changed 'ini2csv.py' for local in run_program
 
 
 class INI2CSV(unittest.TestCase):
