@@ -34,19 +34,24 @@ config.read(args.inifile)
 
 # Write csvfile
 with open(args.csvfile, 'w') as csvfile:
-    csvwriter = csv.writer(csvfile)
 
     # if optional argument exist
     if args.collapsed:
-        csvwriter.writerow(('header', 'indent_style', 'indent_size'))
-        
-        for section in config.sections():
-            key, value = tuple(config[section].items())
-            row = (section, key[1], value[1])
-            csvwriter.writerow(row)    
+        rows = [
+            {'header': name, **section}
+            for name, section in config.items()
+            if section
+        ]
+        csvwriter = csv.DictWriter(csvfile, fieldnames=rows[0].keys())
+        csvwriter.writeheader()
+        csvwriter.writerows(rows)
     
     else:
-        for section in config.sections():
-            for key, value in config[section].items():
-                row = (section, key, value)
-                csvwriter.writerow(row)            
+        csvwriter = csv.writer(csvfile)
+        # generator comprehension.
+        # Use writerows instead of row
+        csvwriter.writerows(
+            (name, key, value)
+            for name, section in config.items()
+            for key, value in section.items()
+        )           

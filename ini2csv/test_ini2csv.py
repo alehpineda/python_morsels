@@ -7,6 +7,11 @@ from textwrap import dedent
 from tempfile import NamedTemporaryFile
 import unittest
 
+# path fix for windows
+path = os.path.dirname(os.path.abspath(__file__))
+fname = 'ini2csv.py'
+local = os.path.join(path, fname)
+
 
 class INI2CSV(unittest.TestCase):
 
@@ -31,7 +36,7 @@ class INI2CSV(unittest.TestCase):
             *.js,indent_size,2
         """).lstrip()
         with make_file(contents) as ini_file, make_file() as csv_file:
-            stdout = run_program('ini2csv.py', args=[ini_file, csv_file])
+            stdout = run_program(local, args=[ini_file, csv_file])
             self.assertEqual(stdout, '')
             with open(csv_file) as csv:
                 output = csv.read()
@@ -55,7 +60,7 @@ class INI2CSV(unittest.TestCase):
             *.js,space,2
         """).lstrip()
         with make_file(contents) as ini_file, make_file() as csv_file:
-            run_program('ini2csv.py', args=['--collapsed', ini_file, csv_file])
+            run_program(local, args=['--collapsed', ini_file, csv_file])
             with open(csv_file) as csv:
                 output = csv.read()
         self.assertEqual(expected, output)
