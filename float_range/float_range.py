@@ -1,45 +1,29 @@
 class float_range(object):
-    def __init__(self, *args):
-        self.args = args
-        self.numargs = len(self.args)
-        if not self.numargs:
-            raise TypeError("you need to write at least a value")
-        elif self.numargs > 3:
-            raise TypeError(f"Expected at most 3 arguments, got {self.numargs}")
+    def __init__(self, start, stop=None, step=1):
+        if stop is None:
+            start, stop = 0, start
+        (self.start, self.stop, self.step) = (start, stop, step)
 
     def __iter__(self):
-        numargs = len(self.args)
-        if numargs == 3 and self.args[2] < 0:
-            (start, stop, step) = self.args
-
-            i = start
-            while stop < i:
-                yield float(i)
-                i += step
-
+        i = self.start
+        if self.step > 0:
+            while i < self.stop:
+                yield i
+                i += self.step
         else:
-            if numargs == 1:
-                stop = self.args[0]
-                start = 0.0
-                step = 1.0
-
-            elif numargs == 2:
-                (start, stop) = self.args
-                step = 1.0
-
-            elif numargs == 3:
-                (start, stop, step) = self.args
-
-            i = start
-            while i < stop:
-                yield float(i)
-                i += step
+            while i > self.stop:
+                yield i
+                i += self.step
 
     def __len__(self):
-        return len(list(self.__iter__()))
+        div, mod = divmod(self.stop-self.start, self.step)
+        return max(0, int(div if mod == 0 else div+1))
 
     def __reversed__(self):
-        return reversed(list(self.__iter__()))
+        i = self.start + (len(self)-1)*self.step
+        for _ in range(len(self)):
+            yield i
+            i -= self.step
 
     def __eq__(self, other):
         if isinstance(other, float_range):
