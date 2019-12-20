@@ -4,12 +4,13 @@ from math import pi
 
 """
 Be careful with naming convention of setters and getters
-having the samename of setter, getters, attributes will 
+having the samename of setter, getters, attributes will
 raise a RunTimeError: Maximum recursion achieved
 """
 
+
 class Circle:
-    def __init__(self, radius = 1):
+    def __init__(self, radius=1):
         self.radius = radius
 
     @property
@@ -26,7 +27,7 @@ class Circle:
     @property
     def diameter(self):
         return self.radius * 2
-    
+
     # setter - read/write
     @diameter.setter
     def diameter(self, diameter):

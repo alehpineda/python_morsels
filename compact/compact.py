@@ -1,3 +1,5 @@
+from itertools import groupby
+
 
 def compact1(iterable):
     """
@@ -5,17 +7,17 @@ def compact1(iterable):
     """
     if len(iterable) < 2:
         return iterable
-    
-    return [iterable[e] for e in range(len(iterable)) if e == 0 or iterable[e] != iterable[e - 1]]
 
-from itertools import groupby
+    return [iterable[e] for e in range(len(iterable))
+            if e == 0 or iterable[e] != iterable[e - 1]]
+
 
 def compact2(iterable):
     """
     This works for iterables
     and returns a list
     """
-    return [k for k,_ in groupby(iterable)]
+    return [k for k, _ in groupby(iterable)]
 
 
 def compact(iterable):
