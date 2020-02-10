@@ -50,7 +50,7 @@ class NormalizeSentencesTests(unittest.TestCase):
         )
 
     # To test the Bonus part of this exercise, comment out the following line
-    @unittest.expectedFailure
+    # @unittest.expectedFailure
     def test_no_extra_spaces(self):
         sentences = """
             Sentence 1.  And two spaces after. But one space after this.
@@ -64,7 +64,7 @@ class NormalizeSentencesTests(unittest.TestCase):
         )
 
     # To test the Bonus part of this exercise, comment out the following line
-    @unittest.expectedFailure
+    # @unittest.expectedFailure
     def test_with_abbreviations_and_numbers(self):
         sentences = "P.S. I like fish (e.g. salmon). That is all."
         expected = "P.S. I like fish (e.g. salmon).  That is all."
@@ -80,7 +80,7 @@ class NormalizeSentencesTests(unittest.TestCase):
         )
 
     # To test the Bonus part of this exercise, comment out the following line
-    @unittest.expectedFailure
+    # @unittest.expectedFailure
     def test_excluded_words_work(self):
         sentences = (
             "Do you know about the work of Dr. Rosalind Franklin? You can "

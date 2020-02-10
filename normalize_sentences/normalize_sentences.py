@@ -1,30 +1,6 @@
 import re
-from textwrap import dedent
 
 
+# mut.py --target normalize_sentences --unit-test test_normalize_sentences --runner pytest --show-mutant --coverage --colored-output
 def normalize_sentences(text):
-    replace = {
-        r'(\.)(?=[^\n])': '. ',
-        r'(\!)(?=[^\n])': '! ',
-        r'(\?)(?=[^\n])': '? '
-    }
-
-    for key, value in replace.items():
-        text = (re.sub(key, value, text))
-
-    return text
-
-
-if __name__ == "__main__":
-    sentences = dedent("""
-            This is a paragraph. With two sentences in it.
-
-            And this is one. With three. Three short sentences.
-        """).strip()
-    expected = dedent("""
-            This is a paragraph.  With two sentences in it.
-
-            And this is one.  With three.  Three short sentences.
-        """).strip()
-    print(expected)
-    print(normalize_sentences(sentences))
+    return re.sub(r'([\S][^\.]\S)([?.!]) +', r'\1\2  ', text)
