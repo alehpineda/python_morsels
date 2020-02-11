@@ -121,6 +121,11 @@ class FloatRangeTests(unittest.TestCase):
                 return True
         self.assertEqual(float_range(1000000), EqualToEverything())
 
+    def test_zero_step(self):
+        with self.assertRaises(ValueError):
+            # Should be empty so StopIteration should be raised
+            float_range(1, 6, 0)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

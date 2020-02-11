@@ -49,6 +49,9 @@ class FuzzyStringTests(unittest.TestCase):
         self.assertLessEqual("animal", "animal")
         self.assertFalse(apple <= "animal")
         self.assertFalse("animal" >= apple)
+        self.assertFalse(apple < 'apple')
+        self.assertFalse(apple > 'apple')
+        self.assertLessEqual(apple, 'apple')
 
     # To test the Bonus part of this exercise, comment out the following line
     # @unittest.expectedFailure

@@ -1,5 +1,6 @@
 import datetime
 import unittest
+import pytest
 
 from meetup_date import meetup_date
 
@@ -127,6 +128,10 @@ class MeetupDateTests(unittest.TestCase):
         self.assertEqual(Weekday.FRIDAY, 4)
         self.assertEqual(Weekday.SATURDAY, 5)
         self.assertEqual(Weekday.SUNDAY, 6)
+
+    def test_nth_zero(self):
+        with pytest.raises(ValueError):
+            meetup_date(2018, 6, nth=0)
 
 
 if __name__ == "__main__":

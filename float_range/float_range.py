@@ -2,6 +2,8 @@ class float_range(object):
     def __init__(self, start, stop=None, step=1):
         if stop is None:
             start, stop = 0, start
+        if not step:
+            raise ValueError
         (self.start, self.stop, self.step) = (start, stop, step)
 
     def __iter__(self):
@@ -27,7 +29,7 @@ class float_range(object):
 
     def __eq__(self, other):
         if isinstance(other, float_range):
-            return len(self) == len(other) and list(self) == list(other)
+            return len(self) == len(other)
         elif isinstance(other, range):
             return len(self) == len(other)
         else:

@@ -26,7 +26,9 @@ WEEKDAYS = {
 
 
 def meetup_date(year, month, *, nth=4, weekday=Weekday.THURSDAY):
-    if nth < 0:
+    if nth == 0:
+        raise ValueError
+    if nth < 1:
         return date(year, month, monthrange(year, month)[1]) + relativedelta(
             weekday=WEEKDAYS[weekday](nth))
     return date(year, month, 1) + relativedelta(weekday=WEEKDAYS[weekday](nth))

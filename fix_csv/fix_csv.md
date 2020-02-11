@@ -1,7 +1,7 @@
 # fix_csv.py
 
-We're going to normalize CSV files by writing a program, fix_csv.py, 
-that turns a pipe-delimited file into a comma-delimited file. I'll 
+We're going to normalize CSV files by writing a program, fix_csv.py,
+that turns a pipe-delimited file into a comma-delimited file. I'll
 explain how it should work by example.
 
 Your original file will look like this:
@@ -22,11 +22,11 @@ Reading 1,Dodge,Intrepid,distance,31.28257
 
 - Bonus 1
 
-For the first bonus, I want you to allow the input delimiter and quote 
+For the first bonus, I want you to allow the input delimiter and quote
 character to be optionally specified. ✔️
 
-For example any of these should work (all specify input delimiter as 
-pipe and the last two additionally specifies the quote character as 
+For example any of these should work (all specify input delimiter as
+pipe and the last two additionally specifies the quote character as
 single quote):
 
 $ python fix_csv.py --in-delimiter="|" cars.csv cars-fixed.csv

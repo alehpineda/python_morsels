@@ -1,15 +1,13 @@
 # Circle class
-
 from math import pi
-
-"""
-Be careful with naming convention of setters and getters
-having the samename of setter, getters, attributes will
-raise a RunTimeError: Maximum recursion achieved
-"""
 
 
 class Circle:
+    """
+    Be careful with naming convention of setters and getters
+    having the samename of setter, getters, attributes will
+    raise a RunTimeError: Maximum recursion achieved
+    """
     def __init__(self, radius=1):
         self.radius = radius
 
@@ -19,7 +17,7 @@ class Circle:
 
     @radius.setter
     def radius(self, radius):
-        if radius < 0:
+        if radius < 1:
             raise ValueError('Radius cannot be negative')
         self._radius = radius
 
