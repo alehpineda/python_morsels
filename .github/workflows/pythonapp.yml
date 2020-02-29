@@ -23,7 +23,9 @@ jobs:
       run: |
         pip install pylint
         # pylint *.py **/*.py - runs for all py files in current dir and all subdirs
-        pylint -j 0 **/*.py
+        # --exit-zero treats all errors as warnings.
+        # -f msvs - VSCode report format
+        pylint --exit-zero -f msvs -j 0 **/*.py
     - name: Lint with flake8
       run: |
         pip install flake8
