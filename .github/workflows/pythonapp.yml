@@ -1,14 +1,14 @@
 name: Python application
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
     strategy:
       matrix:
-        platform: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest, ubuntu-16.04, windows-2016]
         python-version: [3.7, 3.8]
-    runs-on: ${{ matrix.platform }}
+    runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -28,5 +28,5 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=79 --statistics
     - name: Test with pytest
       run: |
-        pip install pytest
-        pytest
+        pip install pytest pytest-cov
+        pytest --cov
