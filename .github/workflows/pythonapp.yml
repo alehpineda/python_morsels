@@ -72,6 +72,8 @@ jobs:
     - name: Archive code coverage results
       uses: actions/upload-artifact@v1
       with:
+        os: ubuntu-latest
+        python-version: 3.7
         name: pytest-coverage-report
         path: reports/pytest/
-        os: ubuntu-latest
+
