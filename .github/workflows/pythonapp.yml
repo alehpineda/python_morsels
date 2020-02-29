@@ -67,5 +67,11 @@ jobs:
         pip install -r requirements.txt
     - name: Test with pytest
       run: |
-        pip install pytest pytest-cov
-        pytest --cov
+        pip install pytest pytest-cov pytest-html pytest-sugar
+        py.test --cov --html=reports/pytest/report.html
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v1
+      with:
+        name: pytest-coverage-report
+        path: reports/pytest/
+        os: ubuntu-latest
