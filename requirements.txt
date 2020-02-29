@@ -31,7 +31,7 @@ Jinja2
 junit-xml
 MarkupSafe
 mccabe
-more-itertool
+more-itertools
 mutmut
 MutPy
 numpy
