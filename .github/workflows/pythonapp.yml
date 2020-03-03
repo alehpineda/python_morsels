@@ -1,4 +1,4 @@
-name: Python application
+name: Python Morsels
 
 on: [push, pull_request]
 
