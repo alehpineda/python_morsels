@@ -130,3 +130,4 @@ dmypy.json
 report.html
 report.json
 reports/
+__dummy__.py
