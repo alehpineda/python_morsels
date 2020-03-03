@@ -26,8 +26,11 @@ jobs:
         # --exit-zero treats all errors as warnings.
         # -f msvs - VSCode report format
         echo '""" This is a dummy file """' > __dummy__.py
+        mkdir -p dummy
+        echo '""" This is a dummy file """' > dummy/__dummy__.py
+        # pylint output
         pylint --exit-zero -r y -f msvs -j 0 *.py **/*.py
-        # Save report to json format
+        # Save report to html format
         mkdir -p reports/pylint
         pylint --exit-zero -r y -j 0 --load-plugins=pylint_json2html --output-format=jsonextended *.py **/*.py > reports/pylint/report.json
         pylint-json2html -f jsonextended -o reports/pylint/report.html reports/pylint/report.json
