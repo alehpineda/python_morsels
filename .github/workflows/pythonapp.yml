@@ -26,6 +26,7 @@ jobs:
         # pylint *.py **/*.py - runs for all py files in current dir and all subdirs
         # --exit-zero treats all errors as warnings.
         # -f msvs - VSCode report format
+        # Created dummy file and folder for pylint search
         echo '""" This is a dummy file """' > __dummy__.py
         mkdir -p dummy
         echo '""" This is a dummy file """' > dummy/__dummy__.py
