@@ -12,11 +12,7 @@ for files, tests in zip(sorted(python_output.strip().split('\n')),
     print(f'mut.py --target {files} --unit-test {tests} --runner pytest --coverage')
     # os.system(f'mut.py --target {files} --unit-test {tests} --runner pytest --coverage')
 
-    process = subprocess.Popen(['mut.py',
-                                f'--target {files}',
-                                f'--unit-test {tests}',
-                                '--runner pytest',
-                                '--coverage'],
+    process = subprocess.Popen([f'mut.py --target {files} --unit-test {tests} --runner pytest'],
                                stdout=subprocess.PIPE,
                                universal_newlines=True)
 
