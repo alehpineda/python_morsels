@@ -115,7 +115,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Test with pytest
+    - name: Test with mutpy
       run: |
         pip install pytest mutpy
         python mut.py
