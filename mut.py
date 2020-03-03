@@ -2,10 +2,10 @@ import os
 import subprocess
 
 
-python_files = os.popen('find "$(cd ..; pwd)" -name "*.py" -and -not -name "test_*.py" -and -not -name "mut.py"')
+python_files = os.popen('find "(pwd)" -name "*.py" -and -not -name "test_*.py" -and -not -name "mut.py"')
 python_output = python_files.read()
 
-test_files = os.popen('find "$(cd ..; pwd)" -name "test_*.py" -and -not -name "mut.py"')
+test_files = os.popen('find "$(pwd)" -name "test_*.py" -and -not -name "mut.py"')
 test_output = test_files.read()
 
 for files, tests in zip(sorted(python_output.strip().split('\n')),
