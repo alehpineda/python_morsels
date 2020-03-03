@@ -21,14 +21,15 @@ jobs:
         pip install -r requirements.txt
     - name: Lint with pylint
       run: |
-        pip install pylint
+        pip install pylint pylint-json2html
         # pylint *.py **/*.py - runs for all py files in current dir and all subdirs
         # --exit-zero treats all errors as warnings.
         # -f msvs - VSCode report format
         pylint --exit-zero -r y -f msvs -j 0 **/*.py
         # Save report to json format
         mkdir -p reports/pylint
-        pylint --exit-zero -r y -f json -j 0 **/*.py > reports/pylint/report.json
+        pylint --exit-zero -r y -j 0 --load-plugins=pylint_json2html --output-format=jsonextended **/*.py > reports/pylint/report.json
+        pylint-json2html -f jsonextended -o reports/pylint/report.html reports/pylint/report.json
     - name: Archive pylint coverage results
       uses: actions/upload-artifact@v1
       with:
