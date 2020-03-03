@@ -129,3 +129,4 @@ dmypy.json
 # Reports
 report.html
 report.json
+reports/
