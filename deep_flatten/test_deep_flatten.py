@@ -25,7 +25,7 @@ class DeepFlattenTests(unittest.TestCase):
         self.assertIterableEqual(deep_flatten([[()]]), [])
 
     # To test the Bonus part of this exercise, comment out the following line
-    #@unittest.expectedFailure
+    # @unittest.expectedFailure
     def test_other_iterables(self):
         self.assertIterableEqual(
             deep_flatten((n, (n**3, n**2)) for n in [2, 3]),
@@ -38,7 +38,7 @@ class DeepFlattenTests(unittest.TestCase):
         )
 
     # To test the Bonus part of this exercise, comment out the following line
-    #@unittest.expectedFailure
+    # @unittest.expectedFailure
     def test_returns_iterator(self):
         self.assertEqual(next(deep_flatten([0, [1, [2, 3]]])), 0)
 
@@ -63,7 +63,7 @@ class DeepFlattenTests(unittest.TestCase):
         self.assertEqual(next(deep_flatten(squares)), 4)
 
     # To test the Bonus part of this exercise, comment out the following line
-    #@unittest.expectedFailure
+    # @unittest.expectedFailure
     def test_flatten_with_strings(self):
         inputs = [
             ['cats', ['carl', 'cate']],
