@@ -10,9 +10,9 @@ class MyHTMLParser(HTMLParser):
     def handle_starttag(self, tag, attrs):
         self.tag = tag
         self.attrs = self._convert(attrs, {})
-    
+
     def _convert(self, tup, dic):
-        for key, value in tup: 
+        for key, value in tup:
             if key not in dic:
                 dic.setdefault(key, []).append(value)
         return dic
