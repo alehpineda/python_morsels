@@ -29,18 +29,20 @@ class TailTests(unittest.TestCase):
         self.assertEqual(tail((1, 2, 3), 3), [1, 2, 3])
 
     # To test the Bonus part of this exercise, comment out the following line
-    #@unittest.expectedFailure
+    # @unittest.expectedFailure
     def test_negative_n(self):
         nums = [1, 2, 3, 4]
         self.assertEqual(tail(nums, -1), [])
         self.assertEqual(tail((), -9), [])
 
     # To test the Bonus part of this exercise, comment out the following line
-    #@unittest.expectedFailure
+    # @unittest.expectedFailure
     def test_iterator(self):
         nums = (n**2 for n in [1, 2, 3, 4])
-        self.assertEqual(tail(nums, -1), [])  # No looping when negative n given
-        self.assertEqual(tail(nums, 2), [9, 16])  # Generator consumed at this point
+        # No looping when negative n given
+        self.assertEqual(tail(nums, -1), [])
+        # Generator consumed at this point
+        self.assertEqual(tail(nums, 2), [9, 16])
         self.assertEqual(list(nums), [])  # The nums generator is now empty
         self.assertEqual(tail(nums, 0), [])  # n=0 with empty generator
         self.assertEqual(tail(nums, 1), [])  # n=1 with empty generator

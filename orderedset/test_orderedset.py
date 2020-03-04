@@ -56,7 +56,7 @@ class OrderedSetTests(unittest.TestCase):
         self.assertLess(get_size(numbers), 2000)
 
     # To test the Bonus part of this exercise, comment out the following line
-    #@unittest.expectedFailure
+    # @unittest.expectedFailure
     def test_add_and_discard(self):
         numbers = OrderedSet([1, 2, 3])
         numbers.add(3)
@@ -69,7 +69,7 @@ class OrderedSetTests(unittest.TestCase):
         self.assertEqual(len(numbers), 3)
 
     # To test the Bonus part of this exercise, comment out the following line
-    #@unittest.expectedFailure
+    # @unittest.expectedFailure
     def test_equality(self):
         self.assertEqual(OrderedSet('abc'), OrderedSet('abc'))
         self.assertNotEqual(OrderedSet('abc'), OrderedSet('bac'))
@@ -86,7 +86,7 @@ class OrderedSetTests(unittest.TestCase):
         self.assertFalse(numbers != numbers2)
 
     # To test the Bonus part of this exercise, comment out the following line
-    #@unittest.expectedFailure
+    # @unittest.expectedFailure
     def test_supports_indexing(self):
         string = "Hello world.  This string contains many characters in it."
         characters = OrderedSet(string)
