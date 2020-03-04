@@ -43,30 +43,24 @@ class OrderedSet2(Sequence, MutableSet):
         self.order = []
         self |= iterable
 
-
     def __contains__(self, item):
         return item in self.items
-
 
     def __len__(self):
         return len(self.items)
 
-
     def __getitem__(self, index):
         return self.order[index]
-
 
     def add(self, item):
         if item not in self.items:
             self.order.append(item)
         self.items.add(item)
 
-
     def discard(self, item):
         if item in self.items:
             self.order.remove(item)
             self.items.remove(item)
-
 
     def __eq__(self, other):
         if isinstance(other, type(self)):
