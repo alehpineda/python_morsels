@@ -6,6 +6,7 @@ class ExceptionInfo(object):
     exception = None
     traceback = None
 
+
 @contextmanager
 def suppress(*exception_types):
     info = ExceptionInfo()
