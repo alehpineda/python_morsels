@@ -1,7 +1,7 @@
 import re
 
-# definind funtion parse_ranges
 
+# definind funtion parse_ranges
 def parse_ranges(lists):
     # For each element in list split by ','
     for element in lists.split(','):
@@ -11,7 +11,7 @@ def parse_ranges(lists):
         match = re.search(r'(->.+)', element)
         # if found exists and not match
         if found and not match:
-            # yield the range from the generator 
+            # yield the range from the generator
             yield from (x for x in range(int(start), int(end)+1))
         # else if match exists
         elif match:
@@ -20,4 +20,3 @@ def parse_ranges(lists):
         else:
             # Else yield the element
             yield int(element)
-
