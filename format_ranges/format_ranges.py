@@ -8,7 +8,8 @@ def format_ranges(list_numbers):
 
     for unique_range in _unique_ranges(list_numbers):
 
-        for _, group in groupby(sorted(unique_range), lambda x: x-next(counter)):
+        for _, group in groupby(sorted(unique_range),
+                                lambda x: x-next(counter)):
             group = list(group)
 
             if len(group) > 1:
@@ -17,7 +18,10 @@ def format_ranges(list_numbers):
             else:
                 num_groups.append((group[0],))
 
-    range_groups = (f'{r[0]}-{r[1]}' if len(r) > 1 else f'{r[0]}' for r in sorted(num_groups))
+    range_groups = (f'{r[0]}-{r[1]}'
+                    if len(r) > 1
+                    else f'{r[0]}'
+                    for r in sorted(num_groups))
 
     return ','.join(range_groups)
 
