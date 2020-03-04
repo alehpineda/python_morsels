@@ -22,7 +22,9 @@ parser.add_argument('inifile', help="Load INI-like file")
 parser.add_argument('csvfile', help="Destination csv file")
 
 # Third argument and optional
-parser.add_argument('--collapsed', action='store_true', help="collapse the rows to one row per section")
+parser.add_argument('--collapsed',
+                    action='store_true',
+                    help="collapse the rows to one row per section")
 
 # parse the arguments
 args = parser.parse_args()
@@ -46,7 +48,7 @@ with open(args.csvfile, 'w', newline='') as csvfile:
         csvwriter = csv.DictWriter(csvfile, fieldnames=rows[0].keys())
         csvwriter.writeheader()
         csvwriter.writerows(rows)
-    
+
     else:
         csvwriter = csv.writer(csvfile)
         # generator comprehension.
@@ -55,4 +57,4 @@ with open(args.csvfile, 'w', newline='') as csvfile:
             (name, key, value)
             for name, section in config.items()
             for key, value in section.items()
-        )           
+        )
