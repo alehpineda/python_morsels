@@ -1,24 +1,25 @@
 from functools import total_ordering
 
-number_to_numeral_mapping = {
-    1000: 'M',
-    900: 'CM',
-    500: 'D',
-    400: 'CD',
-    100: 'C',
-    90: 'XC',
-    50: 'L',
-    40: 'XL',
-    10: 'X',
-    9: 'IX',
-    5: 'V',
-    4: 'IV',
-    1: 'I',
-}
-
 
 @total_ordering
 class RomanNumeral(object):
+
+    number_to_numeral_mapping = {
+        1000: 'M',
+        900: 'CM',
+        500: 'D',
+        400: 'CD',
+        100: 'C',
+        90: 'XC',
+        50: 'L',
+        40: 'XL',
+        10: 'X',
+        9: 'IX',
+        5: 'V',
+        4: 'IV',
+        1: 'I',
+    }
+
     def __init__(self, value):
         self.value = self._value_type(value)
 
@@ -35,7 +36,7 @@ class RomanNumeral(object):
     @staticmethod
     def _roman_to_int(value):
         i = result = 0
-        for number, numeral in number_to_numeral_mapping.items():
+        for number, numeral in RomanNumeral.number_to_numeral_mapping.items():
             while value[i:i + len(numeral)] == numeral:
                 result += number
                 i += len(numeral)
@@ -44,7 +45,7 @@ class RomanNumeral(object):
     @staticmethod
     def _int_to_roman(value):
         result = ''
-        for number, numeral in number_to_numeral_mapping.items():
+        for number, numeral in RomanNumeral.number_to_numeral_mapping.items():
             while value >= number:
                 result += numeral
                 value -= number
