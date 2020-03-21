@@ -21,17 +21,14 @@ class RomanNumeral(object):
     }
 
     def __init__(self, value):
-        self.value = self._value_type(value)
+        self.value = self._roman_to_int(value)
 
     def __int__(self):
-        return self._roman_to_int()
-
-    def _value_type(self, value):
-        return value.upper() if isinstance(value, str) else value
+        return self.value
 
     @classmethod
     def from_int(cls, value):
-        return cls(value)._int_to_roman()
+        return cls(cls._int_to_roman(value))
 
     @staticmethod
     def _roman_to_int(value):
@@ -53,18 +50,18 @@ class RomanNumeral(object):
         return result
 
     def __repr__(self):
-        return f"RomanNumeral('{self.value}')"
+        return f"RomanNumeral('{self._int_to_roman(self.value)}')"
 
     def __str__(self):
-        return self.value
+        return self._int_to_roman(self.value)
 
     def __add__(self, other):
         if isinstance(other, RomanNumeral):
-            value = self._roman_to_int() + other._roman_to_int()
-            return RomanNumeral(self.from_int(value))
+            value = self.value + other.value
+            return RomanNumeral(self._int_to_roman(value))
         elif isinstance(other, int):
-            value = self._roman_to_int() + other
-            return RomanNumeral(self.from_int(value))
+            value = self.value + other
+            return RomanNumeral(self._int_to_roman(value))
         else:
             NotImplemented
 
@@ -73,19 +70,19 @@ class RomanNumeral(object):
 
     def __eq__(self, other):
         if isinstance(other, RomanNumeral):
-            return self._roman_to_int() == other._roman_to_int()
+            return self.value == other.value
         elif isinstance(other, int):
-            return self._roman_to_int() == other
-        elif isinstance(other, str):
             return self.value == other
+        elif isinstance(other, str):
+            return self._int_to_roman(self.value) == other
         else:
             NotImplemented
 
     def __lt__(self, other):
         if isinstance(other, RomanNumeral):
-            return self._roman_to_int() < other._roman_to_int()
+            return self.value < other.value
         elif isinstance(other, int):
-            return self._roman_to_int() < other
+            return self.value < other
         elif isinstance(other, str):
             raise TypeError
         else:
