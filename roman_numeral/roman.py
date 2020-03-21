@@ -57,11 +57,9 @@ class RomanNumeral(object):
 
     def __add__(self, other):
         if isinstance(other, RomanNumeral):
-            value = self.value + other.value
-            return RomanNumeral(self._int_to_roman(value))
+            return self.from_int(self.value + other.value)
         elif isinstance(other, int):
-            value = self.value + other
-            return RomanNumeral(self._int_to_roman(value))
+            return self.from_int(self.value + other)
         else:
             NotImplemented
 
