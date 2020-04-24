@@ -23,7 +23,9 @@ parser.add_argument("csvfile", help="Destination csv file")
 
 # Third argument and optional
 parser.add_argument(
-    "--collapsed", action="store_true", help="collapse the rows to one row per section"
+    "--collapsed",
+    action="store_true",
+    help="collapse the rows to one row per section",
 )
 
 # parse the arguments
@@ -41,7 +43,9 @@ with open(args.csvfile, "w", newline="") as csvfile:
     # if optional argument exist
     if args.collapsed:
         rows = [
-            {"header": name, **section} for name, section in config.items() if section
+            {"header": name, **section}
+            for name, section in config.items()
+            if section
         ]
         csvwriter = csv.DictWriter(csvfile, fieldnames=rows[0].keys())
         csvwriter.writeheader()

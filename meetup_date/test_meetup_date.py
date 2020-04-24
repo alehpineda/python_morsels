@@ -53,23 +53,28 @@ class MeetupDateTests(unittest.TestCase):
     def test_allow_specifying_from_end_of_month(self):
         # Last Thursday
         self.assertEqual(
-            meetup_date(2016, 2, nth=-1, weekday=3), datetime.date(2016, 2, 25),
+            meetup_date(2016, 2, nth=-1, weekday=3),
+            datetime.date(2016, 2, 25),
         )
         # Last Friday
         self.assertEqual(
-            meetup_date(2018, 1, nth=-1, weekday=4), datetime.date(2018, 1, 26),
+            meetup_date(2018, 1, nth=-1, weekday=4),
+            datetime.date(2018, 1, 26),
         )
         # Last Wednesday
         self.assertEqual(
-            meetup_date(2018, 1, nth=-1, weekday=2), datetime.date(2018, 1, 31),
+            meetup_date(2018, 1, nth=-1, weekday=2),
+            datetime.date(2018, 1, 31),
         )
         # Last Saturday
         self.assertEqual(
-            meetup_date(2018, 3, nth=-1, weekday=5), datetime.date(2018, 3, 31),
+            meetup_date(2018, 3, nth=-1, weekday=5),
+            datetime.date(2018, 3, 31),
         )
         # Second to last Monday
         self.assertEqual(
-            meetup_date(2018, 1, nth=-2, weekday=0), datetime.date(2018, 1, 22),
+            meetup_date(2018, 1, nth=-2, weekday=0),
+            datetime.date(2018, 1, 22),
         )
 
     # To test the Bonus part of this exercise, comment out the following line

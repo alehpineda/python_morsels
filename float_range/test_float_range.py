@@ -20,7 +20,9 @@ class FloatRangeTests(unittest.TestCase):
     def test_optional_step(self):
         self.assertEqual(list(float_range(1, 6, 1)), [1, 2, 3, 4, 5])
         self.assertEqual(list(float_range(1, 6)), [1, 2, 3, 4, 5])
-        self.assertEqual(list(float_range(0.5, 6)), [0.5, 1.5, 2.5, 3.5, 4.5, 5.5])
+        self.assertEqual(
+            list(float_range(0.5, 6)), [0.5, 1.5, 2.5, 3.5, 4.5, 5.5]
+        )
 
     def test_optional_start(self):
         self.assertEqual(list(float_range(0, 6)), [0, 1, 2, 3, 4, 5])
@@ -42,7 +44,9 @@ class FloatRangeTests(unittest.TestCase):
             # Should be empty so StopIteration should be raised
             next(iter(float_range(1, 6, -1)))
         self.assertEqual(list(float_range(5, 0, -1)), [5, 4, 3, 2, 1])
-        self.assertEqual(list(float_range(0.5, 6)), [0.5, 1.5, 2.5, 3.5, 4.5, 5.5])
+        self.assertEqual(
+            list(float_range(0.5, 6)), [0.5, 1.5, 2.5, 3.5, 4.5, 5.5]
+        )
         self.assertEqual(
             list(float_range(6, 1, -0.5)),
             [6, 5.5, 5.0, 4.5, 4.0, 3.5, 3.0, 2.5, 2.0, 1.5],
@@ -64,7 +68,8 @@ class FloatRangeTests(unittest.TestCase):
         if isinstance(response, Generator):
             next(response)
             size = sum(
-                sys.getsizeof(obj) for obj in response.gi_frame.f_locals.values()
+                sys.getsizeof(obj)
+                for obj in response.gi_frame.f_locals.values()
             )
         else:
             size = sys.getsizeof(response)
@@ -85,7 +90,9 @@ class FloatRangeTests(unittest.TestCase):
     # @unittest.expectedFailure
     def test_reversed(self):
         r = reversed(float_range(0.5, 7, 0.75))
-        self.assertEqual(list(r), [6.5, 5.75, 5.0, 4.25, 3.5, 2.75, 2.0, 1.25, 0.5])
+        self.assertEqual(
+            list(r), [6.5, 5.75, 5.0, 4.25, 3.5, 2.75, 2.0, 1.25, 0.5]
+        )
         big_num = 1000000
         self.assertEqual(next(reversed(float_range(big_num))), big_num - 1)
 
@@ -96,7 +103,8 @@ class FloatRangeTests(unittest.TestCase):
         self.assertEqual(float_range(5, 11, 5), float_range(5, 12, 5))
         self.assertEqual(float_range(10), float_range(0, 10))
         self.assertNotEqual(
-            float_range(0, 2 ** 10, 2 ** -10), float_range(0, 2 ** 10 + 1, 2 ** -10),
+            float_range(0, 2 ** 10, 2 ** -10),
+            float_range(0, 2 ** 10 + 1, 2 ** -10),
         )
         self.assertEqual(float_range(1000000), range(1000000))
         self.assertEqual(range(1000000), float_range(1000000))

@@ -48,7 +48,15 @@ class AddTests(unittest.TestCase):
         matrix_5 = [[31, 32], [27, 24]]
         self.assertEqual(add(matrix_1, matrix_2, matrix_3), matrix_4)
         self.assertEqual(
-            add(matrix_2, matrix_3, matrix_1, matrix_1, matrix_2, matrix_4, matrix_1),
+            add(
+                matrix_2,
+                matrix_3,
+                matrix_1,
+                matrix_1,
+                matrix_2,
+                matrix_4,
+                matrix_1,
+            ),
             matrix_5,
         )
 

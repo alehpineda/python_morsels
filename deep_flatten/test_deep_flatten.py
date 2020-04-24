@@ -28,10 +28,13 @@ class DeepFlattenTests(unittest.TestCase):
     # @unittest.expectedFailure
     def test_other_iterables(self):
         self.assertIterableEqual(
-            deep_flatten((n, (n ** 3, n ** 2)) for n in [2, 3]), [2, 8, 4, 3, 27, 9],
+            deep_flatten((n, (n ** 3, n ** 2)) for n in [2, 3]),
+            [2, 8, 4, 3, 27, 9],
         )
         self.assertIterableEqual(deep_flatten([(1, 2), deque([3])]), [1, 2, 3])
-        self.assertIterableEqual(deep_flatten(iter([n]) for n in [1, 2, 3]), [1, 2, 3])
+        self.assertIterableEqual(
+            deep_flatten(iter([n]) for n in [1, 2, 3]), [1, 2, 3]
+        )
 
     # To test the Bonus part of this exercise, comment out the following line
     # @unittest.expectedFailure

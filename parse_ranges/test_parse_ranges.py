@@ -30,7 +30,8 @@ class ParseRangesTests(unittest.TestCase):
     # @unittest.expectedFailure
     def test_with_individual_numbers(self):
         self.assertEqual(
-            list(parse_ranges("0,4-8,20,43-45")), [0, 4, 5, 6, 7, 8, 20, 43, 44, 45],
+            list(parse_ranges("0,4-8,20,43-45")),
+            [0, 4, 5, 6, 7, 8, 20, 43, 44, 45],
         )
 
     # @unittest.expectedFailure

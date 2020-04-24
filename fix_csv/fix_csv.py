@@ -15,7 +15,9 @@ with open(args.original_file, newline="") as original_file:
     if args.in_delimiter and args.in_quote:
         rows = list(
             csv.reader(
-                original_file, delimiter=args.in_delimiter, quotechar=args.in_quote
+                original_file,
+                delimiter=args.in_delimiter,
+                quotechar=args.in_quote,
             )
         )
     else:

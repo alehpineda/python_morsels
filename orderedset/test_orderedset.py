@@ -112,7 +112,9 @@ def get_size(obj, seen=None):
             if hasattr(obj, attr)
         )
     if isinstance(obj, Mapping):
-        size += sum(get_size(k, seen) + get_size(v, seen) for k, v in obj.items())
+        size += sum(
+            get_size(k, seen) + get_size(v, seen) for k, v in obj.items()
+        )
     elif isinstance(obj, Iterable) and not isinstance(obj, (str, bytes)):
         size += sum(get_size(item, seen) for item in obj)
     return size

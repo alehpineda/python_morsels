@@ -15,7 +15,9 @@ class FormatFixedWidthTests(unittest.TestCase):
         self.assertEqual(format_fixed_width([["hi", "there"]]), "hi  there")
 
     def test_two_lists_with_one_element_each(self):
-        self.assertEqual(format_fixed_width([["Jane"], ["Mark"]]), "Jane\nMark")
+        self.assertEqual(
+            format_fixed_width([["Jane"], ["Mark"]]), "Jane\nMark"
+        )
 
     def test_two_lists_with_two_elements_each(self):
         self.assertEqual(
@@ -34,7 +36,11 @@ class FormatFixedWidthTests(unittest.TestCase):
     def test_different_length_first_column(self):
         self.assertEqual(
             format_fixed_width(
-                [["Jane", "Austen"], ["Mark", "Twain"], ["Charlotte", "Brontë"]]
+                [
+                    ["Jane", "Austen"],
+                    ["Mark", "Twain"],
+                    ["Charlotte", "Brontë"],
+                ]
             ),
             dedent(
                 """
@@ -106,7 +112,10 @@ class FormatFixedWidthTests(unittest.TestCase):
     def test_column_widths_specified(self):
         self.assertEqual(
             format_fixed_width(
-                [["Samuel", "Langhorne", "Clemens"], ["", "Charlotte", "Brontë"]],
+                [
+                    ["Samuel", "Langhorne", "Clemens"],
+                    ["", "Charlotte", "Brontë"],
+                ],
                 widths=[10, 10, 10],
             ),
             dedent(
