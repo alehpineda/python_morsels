@@ -18,11 +18,11 @@ class float_range(object):
                 i += self.step
 
     def __len__(self):
-        div, mod = divmod(self.stop-self.start, self.step)
-        return max(0, int(div if mod == 0 else div+1))
+        div, mod = divmod(self.stop - self.start, self.step)
+        return max(0, int(div if mod == 0 else div + 1))
 
     def __reversed__(self):
-        i = self.start + (len(self)-1)*self.step
+        i = self.start + (len(self) - 1) * self.step
         for _ in range(len(self)):
             yield i
             i -= self.step

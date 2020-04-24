@@ -16,15 +16,15 @@ import csv
 parser = argparse.ArgumentParser()
 
 # First argument
-parser.add_argument('inifile', help="Load INI-like file")
+parser.add_argument("inifile", help="Load INI-like file")
 
 # Second argument
-parser.add_argument('csvfile', help="Destination csv file")
+parser.add_argument("csvfile", help="Destination csv file")
 
 # Third argument and optional
-parser.add_argument('--collapsed',
-                    action='store_true',
-                    help="collapse the rows to one row per section")
+parser.add_argument(
+    "--collapsed", action="store_true", help="collapse the rows to one row per section"
+)
 
 # parse the arguments
 args = parser.parse_args()
@@ -36,14 +36,12 @@ config.read(args.inifile)
 
 # Write csvfile
 # newline='' needed for windows
-with open(args.csvfile, 'w', newline='') as csvfile:
+with open(args.csvfile, "w", newline="") as csvfile:
 
     # if optional argument exist
     if args.collapsed:
         rows = [
-            {'header': name, **section}
-            for name, section in config.items()
-            if section
+            {"header": name, **section} for name, section in config.items() if section
         ]
         csvwriter = csv.DictWriter(csvfile, fieldnames=rows[0].keys())
         csvwriter.writeheader()

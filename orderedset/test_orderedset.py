@@ -31,8 +31,8 @@ class OrderedSetTests(unittest.TestCase):
     def test_length(self):
         numbers = OrderedSet([1, 2, 4, 2, 1, 4, 5])
         self.assertEqual(len(numbers), 4)
-        self.assertEqual(len(OrderedSet('hiya')), 4)
-        self.assertEqual(len(OrderedSet('hello there')), 7)
+        self.assertEqual(len(OrderedSet("hiya")), 4)
+        self.assertEqual(len(OrderedSet("hello there")), 7)
 
     def test_containment(self):
         numbers = OrderedSet([1, 2, 4, 2, 1, 4, 5])
@@ -47,8 +47,7 @@ class OrderedSetTests(unittest.TestCase):
 
         # Time efficient construction
         self.assertGreater(
-            small_set_timer.elapsed * 5,
-            large_set_timer.elapsed,
+            small_set_timer.elapsed * 5, large_set_timer.elapsed,
         )
 
         # Memory efficient
@@ -71,12 +70,12 @@ class OrderedSetTests(unittest.TestCase):
     # To test the Bonus part of this exercise, comment out the following line
     # @unittest.expectedFailure
     def test_equality(self):
-        self.assertEqual(OrderedSet('abc'), OrderedSet('abc'))
-        self.assertNotEqual(OrderedSet('abc'), OrderedSet('bac'))
-        self.assertEqual(OrderedSet('abc'), set('abc'))
-        self.assertEqual(OrderedSet('bac'), set('abc'))
-        self.assertNotEqual(OrderedSet('abc'), 'abc')
-        self.assertNotEqual(OrderedSet('abc'), ['a', 'b', 'c'])
+        self.assertEqual(OrderedSet("abc"), OrderedSet("abc"))
+        self.assertNotEqual(OrderedSet("abc"), OrderedSet("bac"))
+        self.assertEqual(OrderedSet("abc"), set("abc"))
+        self.assertEqual(OrderedSet("bac"), set("abc"))
+        self.assertNotEqual(OrderedSet("abc"), "abc")
+        self.assertNotEqual(OrderedSet("abc"), ["a", "b", "c"])
         numbers = OrderedSet([1, 2, 3])
         numbers2 = OrderedSet([1, 2, 3, 4])
         self.assertNotEqual(numbers, numbers2)
@@ -90,10 +89,10 @@ class OrderedSetTests(unittest.TestCase):
     def test_supports_indexing(self):
         string = "Hello world.  This string contains many characters in it."
         characters = OrderedSet(string)
-        self.assertEqual(characters[0], 'H')
-        self.assertEqual(characters[2], 'l')
-        self.assertEqual(characters[3], 'o')
-        self.assertEqual(characters[-1], 'y')
+        self.assertEqual(characters[0], "H")
+        self.assertEqual(characters[2], "l")
+        self.assertEqual(characters[3], "o")
+        self.assertEqual(characters[-1], "y")
 
 
 def get_size(obj, seen=None):
@@ -104,19 +103,16 @@ def get_size(obj, seen=None):
     if id(obj) in seen:
         return 0
     seen.add(id(obj))
-    if hasattr(obj, '__dict__'):
+    if hasattr(obj, "__dict__"):
         size += get_size(obj.__dict__, seen)
-    if hasattr(obj, '__slots__'):
+    if hasattr(obj, "__slots__"):
         size += sum(
             get_size(getattr(obj, attr), seen)
             for attr in obj.__slots__
             if hasattr(obj, attr)
         )
     if isinstance(obj, Mapping):
-        size += sum(
-            get_size(k, seen) + get_size(v, seen)
-            for k, v in obj.items()
-        )
+        size += sum(get_size(k, seen) + get_size(v, seen) for k, v in obj.items())
     elif isinstance(obj, Iterable) and not isinstance(obj, (str, bytes)):
         size += sum(get_size(item, seen) for item in obj)
     return size

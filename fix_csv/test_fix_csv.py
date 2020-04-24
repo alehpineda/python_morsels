@@ -9,7 +9,7 @@ import unittest
 
 # path fix for windows
 path = os.path.dirname(os.path.abspath(__file__))
-fname = 'fix_csv.py'
+fname = "fix_csv.py"
 local = os.path.join(path, fname)
 
 
@@ -20,20 +20,24 @@ class FixCSVTests(unittest.TestCase):
     maxDiff = None
 
     def test_pipe_file_to_csv_file(self):
-        old_contents = dedent("""
+        old_contents = dedent(
+            """
             2012|Lexus|LFA
             2009|GMC|Yukon XL 1500
             1965|Ford|Mustang
             2005|Hyundai|Sonata
             1995|Mercedes-Benz|C-Class
-        """).lstrip()
-        expected = dedent("""
+        """
+        ).lstrip()
+        expected = dedent(
+            """
             2012,Lexus,LFA
             2009,GMC,Yukon XL 1500
             1965,Ford,Mustang
             2005,Hyundai,Sonata
             1995,Mercedes-Benz,C-Class
-        """).lstrip()
+        """
+        ).lstrip()
         with make_file(old_contents) as old, make_file("") as new:
             # test 1
             output = run_program(local, args=[old, new])
@@ -43,7 +47,8 @@ class FixCSVTests(unittest.TestCase):
         self.assertEqual("", output)
 
     def test_delimiter_in_output(self):
-        old_contents = dedent("""
+        old_contents = dedent(
+            """
             02|Waylon Jennings|Honky Tonk Heroes (Like Me)
             04|Kris Kristofferson|To Beat The Devil
             11|Johnny Cash|Folsom Prison Blues
@@ -51,8 +56,10 @@ class FixCSVTests(unittest.TestCase):
             21|Hank Williams III|Mississippi Mud
             22|David Allan Coe|Willie, Waylon, And Me
             24|Bob Dylan|House Of The Risin' Sun
-        """).lstrip()
-        expected = dedent("""
+        """
+        ).lstrip()
+        expected = dedent(
+            """
             02,Waylon Jennings,Honky Tonk Heroes (Like Me)
             04,Kris Kristofferson,To Beat The Devil
             11,Johnny Cash,Folsom Prison Blues
@@ -60,7 +67,8 @@ class FixCSVTests(unittest.TestCase):
             21,Hank Williams III,Mississippi Mud
             22,David Allan Coe,"Willie, Waylon, And Me"
             24,Bob Dylan,House Of The Risin' Sun
-        """).lstrip()
+        """
+        ).lstrip()
         with make_file(old_contents) as old, make_file("") as new:
             output = run_program(local, args=[old, new])
             with open(new) as new_file:
@@ -69,10 +77,12 @@ class FixCSVTests(unittest.TestCase):
         self.assertEqual("", output)
 
     def test_original_file_is_unchanged(self):
-        old_contents = dedent("""
+        old_contents = dedent(
+            """
             2012|Lexus|LFA
             2009|GMC|Yukon XL 1500
-        """).lstrip()
+        """
+        ).lstrip()
         with make_file(old_contents) as old, make_file("") as new:
             run_program(local, args=[old, new])
             with open(old) as old_file:
@@ -87,27 +97,33 @@ class FixCSVTests(unittest.TestCase):
     # To test the Bonus part of this exercise, comment out the following line
     # @unittest.expectedFailure
     def test_in_delimiter_and_in_quote(self):
-        old_contents = dedent("""
+        old_contents = dedent(
+            """
             2012 Lexus "LFA"
             2009 GMC 'Yukon XL 1500'
             1995 "Mercedes-Benz" C-Class
-        """).lstrip()
-        expected1 = dedent("""
+        """
+        ).lstrip()
+        expected1 = dedent(
+            """
             2012,Lexus,LFA
             2009,GMC,'Yukon,XL,1500'
             1995,Mercedes-Benz,C-Class
-        """).lstrip()
-        expected2 = dedent('''
+        """
+        ).lstrip()
+        expected2 = dedent(
+            '''
             2012,Lexus,"""LFA"""
             2009,GMC,Yukon XL 1500
             1995,"""Mercedes-Benz""",C-Class
-        ''').lstrip()
+        '''
+        ).lstrip()
         with make_file(old_contents) as old, make_file("") as new:
-            args = [old, new, '--in-delimiter= ']
+            args = [old, new, "--in-delimiter= "]
             run_program(local, args=args)
             with open(new) as new_file:
                 self.assertEqual(expected1, new_file.read())
-            args = ['--in-delimiter= ', "--in-quote='", old, new]
+            args = ["--in-delimiter= ", "--in-quote='", old, new]
             run_program(local, args=args)
             with open(new) as new_file:
                 self.assertEqual(expected2, new_file.read())
@@ -115,21 +131,26 @@ class FixCSVTests(unittest.TestCase):
     # To test the Bonus part of this exercise, comment out the following line
     # @unittest.expectedFailure
     def test_autodetect_input_format(self):
-        contents1 = dedent("""
+        contents1 = dedent(
+            """
             '2012' 'Lexus' 'LFA'
             '2009' 'GMC' 'Yukon XL 1500'
             '1995' 'Mercedes-Benz' 'C-Class'
-        """).lstrip()
-        expected1 = dedent("""
+        """
+        ).lstrip()
+        expected1 = dedent(
+            """
             2012,Lexus,LFA
             2009,GMC,Yukon XL 1500
             1995,Mercedes-Benz,C-Class
-        """).lstrip()
+        """
+        ).lstrip()
         with make_file(contents1) as old, make_file("") as new:
             run_program(local, args=[old, new])
             with open(new) as new_file:
                 self.assertEqual(expected1, new_file.read())
-        contents2 = dedent("""
+        contents2 = dedent(
+            """
             "02"\t"Waylon Jennings"\t"Honky Tonk Heroes (Like Me)"\t"3:29"
             "04"\t"Kris Kristofferson"\t"To Beat The Devil"\t"4:05"
             "11"\t"Johnny Cash"\t"Folsom Prison Blues"\t"2:51"
@@ -137,8 +158,10 @@ class FixCSVTests(unittest.TestCase):
             "21"\t"Hank Williams III"\t"Mississippi Mud"\t"3:32"
             "22"\t"David Allan Coe"\t"Willie, Waylon, And Me"\t"3:24"
             "24"\t"Bob Dylan"\t"House Of The Risin' Sun"\t"5:20"
-        """).lstrip()
-        expected2 = dedent("""
+        """
+        ).lstrip()
+        expected2 = dedent(
+            """
             02,Waylon Jennings,Honky Tonk Heroes (Like Me),3:29
             04,Kris Kristofferson,To Beat The Devil,4:05
             11,Johnny Cash,Folsom Prison Blues,2:51
@@ -146,7 +169,8 @@ class FixCSVTests(unittest.TestCase):
             21,Hank Williams III,Mississippi Mud,3:32
             22,David Allan Coe,"Willie, Waylon, And Me",3:24
             24,Bob Dylan,House Of The Risin' Sun,5:20
-        """).lstrip()
+        """
+        ).lstrip()
         with make_file(contents2) as old, make_file("") as new:
             run_program(local, args=[old, new])
             with open(new) as new_file:
@@ -169,9 +193,9 @@ def run_program(path, args=[], raises=DummyException):
         sys.argv = [path] + args
         with redirect_stdout(StringIO()) as output:
             try:
-                if '__main__' in sys.modules:
-                    del sys.modules['__main__']
-                SourceFileLoader('__main__', path).load_module()
+                if "__main__" in sys.modules:
+                    del sys.modules["__main__"]
+                SourceFileLoader("__main__", path).load_module()
             except raises:
                 return output.getvalue()
             except SystemExit as e:
@@ -187,7 +211,7 @@ def run_program(path, args=[], raises=DummyException):
 @contextmanager
 def make_file(contents=None):
     """Context manager providing name of a file containing given contents."""
-    with NamedTemporaryFile(mode='wt', encoding='utf-8', delete=False) as f:
+    with NamedTemporaryFile(mode="wt", encoding="utf-8", delete=False) as f:
         if contents:
             f.write(contents)
     try:

@@ -9,8 +9,8 @@ class RomanNumeralTests(unittest.TestCase):
 
     def verify(self, integer, numeral):
         self.assertEqual(int(RomanNumeral(numeral)), integer)
-        self.assertNotEqual(int(RomanNumeral(numeral)), integer+1)
-        self.assertNotEqual(int(RomanNumeral(numeral)), integer-1)
+        self.assertNotEqual(int(RomanNumeral(numeral)), integer + 1)
+        self.assertNotEqual(int(RomanNumeral(numeral)), integer - 1)
 
     def test_single_digit(self):
         self.verify(1, "I")

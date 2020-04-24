@@ -14,15 +14,7 @@ class Weekday(object):
     SUNDAY = 6
 
 
-WEEKDAYS = {
-    0: MO,
-    1: TU,
-    2: WE,
-    3: TH,
-    4: FR,
-    5: SA,
-    6: SU
-}
+WEEKDAYS = {0: MO, 1: TU, 2: WE, 3: TH, 4: FR, 5: SA, 6: SU}
 
 
 def meetup_date(year, month, *, nth=4, weekday=Weekday.THURSDAY):
@@ -30,5 +22,6 @@ def meetup_date(year, month, *, nth=4, weekday=Weekday.THURSDAY):
         raise ValueError
     if nth < 1:
         return date(year, month, monthrange(year, month)[1]) + relativedelta(
-            weekday=WEEKDAYS[weekday](nth))
+            weekday=WEEKDAYS[weekday](nth)
+        )
     return date(year, month, 1) + relativedelta(weekday=WEEKDAYS[weekday](nth))

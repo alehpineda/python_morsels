@@ -29,28 +29,23 @@ class MeetupDateTests(unittest.TestCase):
     def test_allow_week_and_weekday_to_be_specified(self):
         # Fourth Thursday
         self.assertEqual(
-            meetup_date(2016, 2, nth=4, weekday=3),
-            datetime.date(2016, 2, 25),
+            meetup_date(2016, 2, nth=4, weekday=3), datetime.date(2016, 2, 25),
         )
         # First Monday
         self.assertEqual(
-            meetup_date(2018, 1, nth=1, weekday=0),
-            datetime.date(2018, 1, 1),
+            meetup_date(2018, 1, nth=1, weekday=0), datetime.date(2018, 1, 1),
         )
         # Fourth Saturday
         self.assertEqual(
-            meetup_date(2018, 1, nth=4, weekday=5),
-            datetime.date(2018, 1, 27),
+            meetup_date(2018, 1, nth=4, weekday=5), datetime.date(2018, 1, 27),
         )
         # Fifth Wednesday
         self.assertEqual(
-            meetup_date(2018, 1, nth=5, weekday=2),
-            datetime.date(2018, 1, 31),
+            meetup_date(2018, 1, nth=5, weekday=2), datetime.date(2018, 1, 31),
         )
         # Second Tuesday
         self.assertEqual(
-            meetup_date(2018, 2, nth=2, weekday=1),
-            datetime.date(2018, 2, 13),
+            meetup_date(2018, 2, nth=2, weekday=1), datetime.date(2018, 2, 13),
         )
 
     # To test the Bonus part of this exercise, comment out the following line
@@ -58,34 +53,30 @@ class MeetupDateTests(unittest.TestCase):
     def test_allow_specifying_from_end_of_month(self):
         # Last Thursday
         self.assertEqual(
-            meetup_date(2016, 2, nth=-1, weekday=3),
-            datetime.date(2016, 2, 25),
+            meetup_date(2016, 2, nth=-1, weekday=3), datetime.date(2016, 2, 25),
         )
         # Last Friday
         self.assertEqual(
-            meetup_date(2018, 1, nth=-1, weekday=4),
-            datetime.date(2018, 1, 26),
+            meetup_date(2018, 1, nth=-1, weekday=4), datetime.date(2018, 1, 26),
         )
         # Last Wednesday
         self.assertEqual(
-            meetup_date(2018, 1, nth=-1, weekday=2),
-            datetime.date(2018, 1, 31),
+            meetup_date(2018, 1, nth=-1, weekday=2), datetime.date(2018, 1, 31),
         )
         # Last Saturday
         self.assertEqual(
-            meetup_date(2018, 3, nth=-1, weekday=5),
-            datetime.date(2018, 3, 31),
+            meetup_date(2018, 3, nth=-1, weekday=5), datetime.date(2018, 3, 31),
         )
         # Second to last Monday
         self.assertEqual(
-            meetup_date(2018, 1, nth=-2, weekday=0),
-            datetime.date(2018, 1, 22),
+            meetup_date(2018, 1, nth=-2, weekday=0), datetime.date(2018, 1, 22),
         )
 
     # To test the Bonus part of this exercise, comment out the following line
     # @unittest.expectedFailure
     def test_add_Weekday_object(self):
         from meetup_date import Weekday
+
         # First Monday
         self.assertEqual(
             meetup_date(2018, 1, nth=1, weekday=Weekday.MONDAY),

@@ -28,10 +28,10 @@ class CircleTests(unittest.TestCase):
 
     def test_string_representation(self):
         circle = Circle(2)
-        self.assertEqual(str(circle), 'Circle(2)')
-        self.assertEqual(repr(circle), 'Circle(2)')
+        self.assertEqual(str(circle), "Circle(2)")
+        self.assertEqual(repr(circle), "Circle(2)")
         circle.radius = 1
-        self.assertEqual(repr(circle), 'Circle(1)')
+        self.assertEqual(repr(circle), "Circle(1)")
 
     # To test the Bonus part of this exercise, comment out the following line
     # @unittest.expectedFailure

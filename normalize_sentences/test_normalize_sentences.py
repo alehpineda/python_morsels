@@ -22,31 +22,32 @@ class NormalizeSentencesTests(unittest.TestCase):
     def test_two_sentences(self):
         sentences = ["Sentence 1.", "Sentence 2."]
         self.assertEqual(
-            normalize_sentences(" ".join(sentences)),
-            "  ".join(sentences),
+            normalize_sentences(" ".join(sentences)), "  ".join(sentences),
         )
 
     def test_multiple_punctuation_marks(self):
         sentences = ["Sentence 1!", "Sentence 2?", "Sentence 3."]
         self.assertEqual(
-            normalize_sentences(" ".join(sentences)),
-            "  ".join(sentences),
+            normalize_sentences(" ".join(sentences)), "  ".join(sentences),
         )
 
     def test_multiple_paragraphs(self):
-        sentences = dedent("""
+        sentences = dedent(
+            """
             This is a paragraph. With two sentences in it.
 
             And this is one. With three. Three short sentences.
-        """).strip()
-        expected = dedent("""
+        """
+        ).strip()
+        expected = dedent(
+            """
             This is a paragraph.  With two sentences in it.
 
             And this is one.  With three.  Three short sentences.
-        """).strip()
+        """
+        ).strip()
         self.assertEqual(
-            normalize_sentences(sentences),
-            expected,
+            normalize_sentences(sentences), expected,
         )
 
     # To test the Bonus part of this exercise, comment out the following line
@@ -59,8 +60,7 @@ class NormalizeSentencesTests(unittest.TestCase):
             Sentence 1.  And two spaces after.  But one space after this.
         """
         self.assertEqual(
-            normalize_sentences(sentences),
-            expected,
+            normalize_sentences(sentences), expected,
         )
 
     # To test the Bonus part of this exercise, comment out the following line
@@ -69,14 +69,12 @@ class NormalizeSentencesTests(unittest.TestCase):
         sentences = "P.S. I like fish (e.g. salmon). That is all."
         expected = "P.S. I like fish (e.g. salmon).  That is all."
         self.assertEqual(
-            normalize_sentences(sentences),
-            expected,
+            normalize_sentences(sentences), expected,
         )
         sentences = "I ate 5.5 oranges. They cost $.50 each. They were good."
         expected = "I ate 5.5 oranges.  They cost $.50 each.  They were good."
         self.assertEqual(
-            normalize_sentences(sentences),
-            expected,
+            normalize_sentences(sentences), expected,
         )
 
     # To test the Bonus part of this exercise, comment out the following line
@@ -93,8 +91,7 @@ class NormalizeSentencesTests(unittest.TestCase):
             "1.17 billion people (as of December 2012).  That's a lot people!"
         )
         self.assertEqual(
-            normalize_sentences(sentences),
-            expected,
+            normalize_sentences(sentences), expected,
         )
 
 

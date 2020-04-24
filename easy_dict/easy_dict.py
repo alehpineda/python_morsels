@@ -2,7 +2,6 @@ from collections import UserDict
 
 
 class EasyDict(UserDict):
-
     def __init__(self, _dict={}, normalize=False, **kwargs):
         self._normalize = normalize
         self.update(_dict)
@@ -19,4 +18,4 @@ class EasyDict(UserDict):
         self.__dict__[self.normalized(key)] = value
 
     def normalized(self, key):
-        return key.replace(' ', '_') if self._normalize else key
+        return key.replace(" ", "_") if self._normalize else key

@@ -15,11 +15,11 @@ class PointTests(unittest.TestCase):
 
     def test_string_representation(self):
         point = Point(1, 2, 3)
-        self.assertEqual(str(point), 'Point(x=1, y=2, z=3)')
-        self.assertEqual(repr(point), 'Point(x=1, y=2, z=3)')
+        self.assertEqual(str(point), "Point(x=1, y=2, z=3)")
+        self.assertEqual(repr(point), "Point(x=1, y=2, z=3)")
         point.y = 4
-        self.assertEqual(str(point), 'Point(x=1, y=4, z=3)')
-        self.assertEqual(repr(point), 'Point(x=1, y=4, z=3)')
+        self.assertEqual(str(point), "Point(x=1, y=4, z=3)")
+        self.assertEqual(repr(point), "Point(x=1, y=4, z=3)")
 
     def test_equality_and_inequality(self):
         p1 = Point(1, 2, 3)

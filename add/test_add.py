@@ -47,8 +47,10 @@ class AddTests(unittest.TestCase):
         matrix_4 = [[9, 9], [9, 9]]
         matrix_5 = [[31, 32], [27, 24]]
         self.assertEqual(add(matrix_1, matrix_2, matrix_3), matrix_4)
-        self.assertEqual(add(matrix_2, matrix_3, matrix_1, matrix_1, matrix_2,
-                             matrix_4, matrix_1), matrix_5)
+        self.assertEqual(
+            add(matrix_2, matrix_3, matrix_1, matrix_1, matrix_2, matrix_4, matrix_1),
+            matrix_5,
+        )
 
     # To test the Bonus part of this exercise, comment out the following line
     # @unittest.expectedFailure

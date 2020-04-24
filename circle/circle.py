@@ -8,6 +8,7 @@ class Circle:
     having the samename of setter, getters, attributes will
     raise a RunTimeError: Maximum recursion achieved
     """
+
     def __init__(self, radius=1):
         self.radius = radius
 
@@ -18,7 +19,7 @@ class Circle:
     @radius.setter
     def radius(self, radius):
         if radius < 1:
-            raise ValueError('Radius cannot be negative')
+            raise ValueError("Radius cannot be negative")
         self._radius = radius
 
     # getter - read only
@@ -37,7 +38,7 @@ class Circle:
 
     # string representation
     def __repr__(self):
-        return 'Circle({})'.format(self.radius)
+        return "Circle({})".format(self.radius)
 
     def __str__(self):
-        return 'Circle({})'.format(self.radius)
+        return "Circle({})".format(self.radius)

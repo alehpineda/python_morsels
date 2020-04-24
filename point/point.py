@@ -7,10 +7,10 @@ class Point:
 
     # String representation
     def __str__(self):
-        return f'Point(x={self.x}, y={self.y}, z={self.z})'
+        return f"Point(x={self.x}, y={self.y}, z={self.z})"
 
     def __repr__(self):
-        return f'Point(x={self.x}, y={self.y}, z={self.z})'
+        return f"Point(x={self.x}, y={self.y}, z={self.z})"
 
     # Comparison between objects
     def __eq__(self, other):

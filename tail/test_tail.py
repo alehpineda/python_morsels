@@ -23,7 +23,7 @@ class TailTests(unittest.TestCase):
         self.assertEqual(tail([], 10), [])
 
     def test_string(self):
-        self.assertEqual(tail('hello', 2), ['l', 'o'])
+        self.assertEqual(tail("hello", 2), ["l", "o"])
 
     def test_tuple(self):
         self.assertEqual(tail((1, 2, 3), 3), [1, 2, 3])
@@ -38,7 +38,7 @@ class TailTests(unittest.TestCase):
     # To test the Bonus part of this exercise, comment out the following line
     # @unittest.expectedFailure
     def test_iterator(self):
-        nums = (n**2 for n in [1, 2, 3, 4])
+        nums = (n ** 2 for n in [1, 2, 3, 4])
         # No looping when negative n given
         self.assertEqual(tail(nums, -1), [])
         # Generator consumed at this point

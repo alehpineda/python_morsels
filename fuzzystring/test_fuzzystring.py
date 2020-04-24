@@ -49,9 +49,9 @@ class FuzzyStringTests(unittest.TestCase):
         self.assertLessEqual("animal", "animal")
         self.assertFalse(apple <= "animal")
         self.assertFalse("animal" >= apple)
-        self.assertFalse(apple < 'apple')
-        self.assertFalse(apple > 'apple')
-        self.assertLessEqual(apple, 'apple')
+        self.assertFalse(apple < "apple")
+        self.assertFalse(apple > "apple")
+        self.assertLessEqual(apple, "apple")
 
     # To test the Bonus part of this exercise, comment out the following line
     # @unittest.expectedFailure
@@ -71,9 +71,9 @@ class FuzzyStringTests(unittest.TestCase):
         string = FuzzyString("ß, ss, \uf9fb, and \u7099")
         self.assertEqual(string, "ss, ß, \u7099, and \uf9fb")
 
-        accent = '\u0301'
-        accented_e = FuzzyString('\u00e9')
-        self.assertEqual('\u0065\u0301', accented_e)
+        accent = "\u0301"
+        accented_e = FuzzyString("\u00e9")
+        self.assertEqual("\u0065\u0301", accented_e)
         self.assertIn(accent, accented_e)
 
 

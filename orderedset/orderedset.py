@@ -64,8 +64,5 @@ class OrderedSet2(Sequence, MutableSet):
 
     def __eq__(self, other):
         if isinstance(other, type(self)):
-            return (
-                len(self) == len(other) and
-                all(x == y for x, y in zip(self, other))
-            )
+            return len(self) == len(other) and all(x == y for x, y in zip(self, other))
         return super().__eq__(other)

@@ -32,12 +32,12 @@ class InterleaveTests(unittest.TestCase):
         self.assertIterableEqual(interleave(in1, in2), out)
 
     def test_string_and_range(self):
-        out = [0, 'H', 1, 'e', 2, 'l', 3, 'l', 4, 'o']
+        out = [0, "H", 1, "e", 2, "l", 3, "l", 4, "o"]
         self.assertIterableEqual(interleave(range(5), "Hello"), out)
 
     def test_with_generator(self):
         in1 = [1, 2, 3, 4]
-        in2 = (n**2 for n in in1)
+        in2 = (n ** 2 for n in in1)
         out = [1, 1, 2, 4, 3, 9, 4, 16]
         self.assertIterableEqual(interleave(in1, in2), out)
 
@@ -46,7 +46,7 @@ class InterleaveTests(unittest.TestCase):
     def test_response_is_iterator(self):
         in1 = [1, 2, 3]
         in2 = [4, 5, 6]
-        squares = (n**2 for n in in1)
+        squares = (n ** 2 for n in in1)
         output = interleave(in1, in2)
         self.assertIs(iter(output), iter(output))
         output = interleave(squares, squares)

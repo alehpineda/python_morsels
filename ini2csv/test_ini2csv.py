@@ -9,7 +9,7 @@ import unittest
 
 # path fix for windows
 path = os.path.dirname(os.path.abspath(__file__))
-fname = 'ini2csv.py'
+fname = "ini2csv.py"
 local = os.path.join(path, fname)
 # changed 'ini2csv.py' for local in run_program
 
@@ -21,7 +21,8 @@ class INI2CSV(unittest.TestCase):
     maxDiff = None
 
     def test_two_groups(self):
-        contents = dedent("""
+        contents = dedent(
+            """
             [*.py]
             indent_style = space
             indent_size = 4
@@ -29,16 +30,19 @@ class INI2CSV(unittest.TestCase):
             [*.js]
             indent_style = space
             indent_size = 2
-        """).lstrip()
-        expected = dedent("""
+        """
+        ).lstrip()
+        expected = dedent(
+            """
             *.py,indent_style,space
             *.py,indent_size,4
             *.js,indent_style,space
             *.js,indent_size,2
-        """).lstrip()
+        """
+        ).lstrip()
         with make_file(contents) as ini_file, make_file() as csv_file:
             stdout = run_program(local, args=[ini_file, csv_file])
-            self.assertEqual(stdout, '')
+            self.assertEqual(stdout, "")
             with open(csv_file) as csv:
                 output = csv.read()
         self.assertEqual(expected, output)
@@ -46,7 +50,8 @@ class INI2CSV(unittest.TestCase):
     # To test the Bonus part of this exercise, comment out the following line
     # @unittest.expectedFailure
     def test_collapsed(self):
-        contents = dedent("""
+        contents = dedent(
+            """
             [*.py]
             indent_style = space
             indent_size = 4
@@ -54,14 +59,17 @@ class INI2CSV(unittest.TestCase):
             [*.js]
             indent_style = space
             indent_size = 2
-        """).lstrip()
-        expected = dedent("""
+        """
+        ).lstrip()
+        expected = dedent(
+            """
             header,indent_style,indent_size
             *.py,space,4
             *.js,space,2
-        """).lstrip()
+        """
+        ).lstrip()
         with make_file(contents) as ini_file, make_file() as csv_file:
-            run_program(local, args=['--collapsed', ini_file, csv_file])
+            run_program(local, args=["--collapsed", ini_file, csv_file])
             with open(csv_file) as csv:
                 output = csv.read()
         self.assertEqual(expected, output)
@@ -75,13 +83,13 @@ def run_program(path, args=[]):
         sys.argv = [path] + args
         with redirect_stdout(StringIO()) as output:
             try:
-                if '__main__' in sys.modules:
-                    del sys.modules['__main__']
-                SourceFileLoader('__main__', path).load_module()
+                if "__main__" in sys.modules:
+                    del sys.modules["__main__"]
+                SourceFileLoader("__main__", path).load_module()
             except SystemExit as e:
                 if e.args != (0,):
                     raise
-            del sys.modules['__main__']
+            del sys.modules["__main__"]
             return output.getvalue()
     finally:
         sys.argv = old_args
@@ -90,7 +98,7 @@ def run_program(path, args=[]):
 @contextmanager
 def make_file(contents=None):
     """Context manager providing name of a file containing given contents."""
-    with NamedTemporaryFile(mode='wt', encoding='utf-8', delete=False) as f:
+    with NamedTemporaryFile(mode="wt", encoding="utf-8", delete=False) as f:
         if contents:
             f.write(contents)
     try:
